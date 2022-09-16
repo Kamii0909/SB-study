@@ -10,50 +10,51 @@ import com.kien.demo.model.Unit;
 
 @Repository("Local")
 public class LocalTftDao implements TftDao{
+    LocalDatabase localDatabase;
 
     @Override
     public Collection<Trait> getAllTraits() {
-        return  Data.allTraits.values();
+        return  LocalDatabase.allTraits.values();
     }
 
     @Override
-    public Collection<Trait> getTraitsWith(Predicate<? super Trait> pred) {
-        return Data.allTraits.values().stream().filter(pred).toList();
+    public Collection<Trait> getTraitsWith(Predicate<Trait> pred) {
+        return LocalDatabase.allTraits.values().stream().filter(pred).toList();
     }
 
     @Override
     public int ignoreATrait(Trait trait) {
-        if(!Data.allTraits.containsKey(trait.getName().hashCode())){
+        if(!LocalDatabase.allTraits.containsKey(trait.getName().hashCode())){
             return 1;
         }
         else {
             for (Unit u: trait.getUnitsWithThisTrait()){
                 u.getTraits().remove(trait);
             }
-            Data.initDistance();
+            LocalDatabase.initDistance();
         }
         return 0;
     }
 
     @Override
     public Collection<Unit> getAllUnits() {
-        return Data.allUnits.values();
+        return LocalDatabase.allUnits.values();
     }
 
     @Override
-    public Collection<Unit> getUnitsWith(Predicate<? super Unit> pred) {
-        return Data.allUnits.values().stream().filter(pred).toList();
+    public Collection<Unit> getUnitsWith(Predicate<Unit> pred) {
+        return LocalDatabase.allUnits.values().stream().filter(pred).toList();
     }
 
     @Override
     public int reInit(){
-        Data.init();
+        LocalDatabase.init();
         return 0;
     }
 
     @Override
     public int[][] getDistance() {
-        return Data.distance;
+        return LocalDatabase.distance;
     }
 
     
