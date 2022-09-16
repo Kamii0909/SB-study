@@ -9,7 +9,7 @@ import com.kien.demo.model.Unit;
 
 public interface TftDao{
     Collection<Trait> getAllTraits();
-    Collection<Trait> getTraitsWith(Predicate<? super Trait> pred);
+    Collection<Trait> getTraitsWith(Predicate<Trait> pred);
 
     /** Ignore a specific trait from other tasks
      * @param trait Trait to be ignored. The trait won't be deleted, but all units will be stripped from the trait
@@ -18,7 +18,7 @@ public interface TftDao{
     int ignoreATrait(Trait trait);
 
     Collection<Unit> getAllUnits();
-    Collection<Unit> getUnitsWith(Predicate<? super Unit> pred);
+    Collection<Unit> getUnitsWith(Predicate<Unit> pred);
 
     int[][] getDistance();
 

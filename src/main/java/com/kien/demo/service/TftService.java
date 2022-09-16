@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.kien.demo.dao.Data;
+import com.kien.demo.dao.LocalDatabase;
 import com.kien.demo.dao.TftDao;
 import com.kien.demo.model.Trait;
 import com.kien.demo.model.Unit;
@@ -48,8 +48,8 @@ public class TftService {
 
     public HashMap<String, Double> getAverageConnectedScore() {
         HashMap<String, Double> avgCS = new HashMap<>();
-        for(Unit u: Data.allUnits.values())
-            avgCS.put(u.getName(), Arrays.stream(Data.distance[u.getPosition()]).average().orElse(-1)) ;
+        for(Unit u: LocalDatabase.allUnits.values())
+            avgCS.put(u.getName(), Arrays.stream(LocalDatabase.distance[u.getPosition()]).average().orElse(-1)) ;
         return avgCS;
     }
 
