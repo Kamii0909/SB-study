@@ -4,118 +4,176 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
   https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id = "traitData" class = "com.kien.demo.dao.localdb.TraitData">
-    <constructor-arg>
-      <map>
-        <entry key = "Astral" value="Astral"></entry>
-        <entry key = "Guild" value="Guild"></entry>
-        <entry key = "Jade" value="Jade"></entry>
-        <entry key = "Mirage" value="Mirage"></entry>
-        <entry key = "Ragewing" value="Ragewing"></entry>
-        <entry key = "Revel" value="Revel"></entry>
-        <entry key = "Scalescorn" value="Scalescorn"></entry>
-        <entry key = "Shimmerscale" value="Shimmerscale"></entry>
-        <entry key = "Tempest" value="Tempest"></entry>
-        <entry key = "Trainer" value="Trainer"></entry>
-        <entry key = "Whispers" value="Whispers"></entry>
-        <entry key = "Assassin" value="Assassin"></entry>
-        <entry key = "Bard" value="Bard"></entry>
-        <entry key = "Bruiser" value="Bruiser"></entry>
-        <entry key = "Cannoneer" value="Cannoneer"></entry>
-        <entry key = "Cavalier" value="Cavalier"></entry>
-        <entry key = "Dragon" value="Dragon"></entry>
-        <entry key = "Dragonmancer" value="Dragonmancer"></entry>
-        <entry key = "Evoker" value="Evoker"></entry>
-        <entry key = "Guardian" value="Guardian"></entry>
-        <entry key = "Legend" value="Legend"></entry>
-        <entry key = "Mage" value="Mage"></entry>
-        <entry key = "Mystic" value="Mystic"></entry>
-        <entry key = "Shapeshifter" value="Shapeshifter"></entry>
-        <entry key = "Spell-Thief" value="Spell-Thief"></entry>
-        <entry key = "Starcaller" value="Starcaller"></entry>
-        <entry key = "Swiftshot" value="Swiftshot"></entry>
-        <entry key = "Warrior" value="Warrior"></entry>
-      </map>
-    </constructor-arg>
-  </bean>
+  <bean id="localPreload" class = "com.kien.demo.dao.localdb.LocalPreload">
+    <property name="traits">
+      <list>
+        <value>Astral</value>
+        <value>Guild</value>
+        <value>Jade</value>
+        <value>Mirage</value>
+        <value>Ragewing</value>
+        <value>Revel</value>
+        <value>Scalescorn</value>
+        <value>Shimmerscale</value>
+        <value>Tempest</value>
+        <value>Trainer</value>
+        <value>Whispers</value>
+        <value>Assassin</value>
+        <value>Bard</value>
+        <value>Bruiser</value>
+        <value>Cannoneer</value>
+        <value>Cavalier</value>
+        <value>Dragon</value>
+        <value>Dragonmancer</value>
+        <value>Evoker</value>
+        <value>Guardian</value>
+        <value>Legend</value>
+        <value>Mage</value>
+        <value>Mystic</value>
+        <value>Shapeshifter</value>
+        <value>Spell-Thief</value>
+        <value>Starcaller</value>
+        <value>Swiftshot</value>
+        <value>Warrior</value>
 
-  <bean id="unitConverter" class="com.kien.demo.dao.localdb.LocalUnitConverter">
-    <property name="traits" ref="traitData"></property>
-  </bean>
-
-  <bean id = "unitData" class = "com.kien.demo.dao.localdb.UnitData">
-    <constructor-arg>
-      <map>
-        <entry key = "Aatrox" value = "Aatrox,Shimmerscale,Warrior"></entry>
-        <entry key = "Anivia" value = "Anivia,Jade,Evoker,Legend"></entry>
-        <entry key = "Ao Shin" value = "AoShin,Tempest,Dragon"></entry>
-        <entry key = "Ashe" value = "Ashe,Jade,Swiftshot,Dragonmancer"></entry>
-        <entry key = "Aurelion Sol" value = "AurelionSol,Astral,Evoker,Dragon"></entry>
-        <entry key = "Bard" value = "Bard,Guild,Mystic,Bard"></entry>
-        <entry key = "Braum" value = "Braum,Scalescorn,Guardian"></entry>
-        <entry key = "Corki" value = "Corki,Revel,Cannoneer"></entry>
-        <entry key = "Daeja" value = "Daeja,Mirage,Dragon"></entry>
-        <entry key = "Diana" value = "Diana,Scalescorn,Assassin"></entry>
-        <entry key = "Elise" value = "Elise,Whispers,Shapeshifter"></entry>
-        <entry key = "Ezreal" value = "Ezreal,Tempest,Swiftshot"></entry>
-        <entry key = "Gnar" value = "Gnar,Jade,Shapeshifter"></entry>
-        <entry key = "Hecarim" value = "Hecarim,Ragewing,Cavalier"></entry>
-        <entry key = "Heimerdinger" value = "Heimerdinger,Trainer,Mage"></entry>
-        <entry key = "Idas" value = "Idas,Shimmerscale,Guardian,Dragon"></entry>
-        <entry key = "Illaoi" value = "Illaoi,Astral,Bruiser"></entry>
-        <entry key = "Jinx" value = "Jinx,Revel,Cannoneer"></entry>
-        <entry key = "Karma" value = "Karma,Jade,Dragonmancer"></entry>
-        <entry key = "Kayn" value = "Kayn,Ragewing,Assassin,Shimmerscale"></entry>
-        <entry key = "Leesin" value = "Leesin,Tempest,Dragonmancer"></entry>
-        <entry key = "Leona" value = "Leona,Mirage,Guardian"></entry>
-        <entry key = "Lillia" value = "Lillia,Scalescorn,Cavalier,Mage"></entry>
-        <entry key = "Lulu" value = "Lulu,Trainer,Mystic,Evoker"></entry>
-        <entry key = "Nami" value = "Nami,Astral,Mage,Mystic"></entry>
-        <entry key = "Neeko" value = "Neeko,Jade,Shapeshifter"></entry>
-        <entry key = "Nidalee" value = "Nidalee,Astral,Shapeshifter"></entry>
-        <entry key = "Nunu" value = "Nunu,Mirage,Cavalier"></entry>
-        <entry key = "Olaf" value = "Olaf,Scalescorn,Bruiser,Warrior"></entry>
-        <entry key = "Ornn" value = "Ornn,Tempest,Bruiser,Legend"></entry>
-        <entry key = "Pyke" value = "Pyke,Whispers,Assassin"></entry>
-        <entry key = "Qiyana" value = "Qiyana,Tempest,Assassin"></entry>
-        <entry key = "Ryze" value = "Ryze,Guild,Mage"></entry>
-        <entry key = "Sejuani" value = "Sejuani,Guild,Cavalier"></entry>
-        <entry key = "Senna" value = "Senna,Ragewing,Cannoneer"></entry>
-        <entry key = "Sett" value = "Sett,Ragewing,Dragonmancer"></entry>
-        <entry key = "Shen" value = "Shen,Ragewing,Bruiser,Warrior"></entry>
-        <entry key = "Shi Oh Yu" value = "ShiOhYu,Jade,Mystic,Dragon"></entry>
-        <entry key = "Shyvana" value = "Shyvana,Ragewing,Shapeshifter"></entry>
-        <entry key = "Skarner" value = "Skarner,Astral,Bruiser"></entry>
-        <entry key = "Sona" value = "Sona,Revel,Evoker"></entry>
-        <entry key = "Soraka" value = "Soraka,Jade,Starcaller"></entry>
-        <entry key = "Swain" value = "Swain,Ragewing,Dragonmancer,Shapeshifter"></entry>
-        <entry key = "Syfen" value = "Syfen,Whispers,Bruiser,Dragon"></entry>
-        <entry key = "Sylas" value = "Sylas,Whispers,Bruiser,Mage"></entry>
-        <entry key = "Tahm Kench" value = "TahmKench,Revel,Bruiser"></entry>
-        <entry key = "Talon" value = "Talon,Guild,Assassin"></entry>
-        <entry key = "Taric" value = "Taric,Jade,Guardian"></entry>
-        <entry key = "Thresh" value = "Thresh,Whispers,Guardian"></entry>
-        <entry key = "Tristana" value = "Tristana,Trainer,Cannoneer"></entry>
-        <entry key = "Twitch" value = "Twitch,Guild,Swiftshot"></entry>
-        <entry key = "Varus" value = "Varus,Astral,Swiftshot"></entry>
-        <entry key = "Vladimir" value = "Vladimir,Astral,Mage"></entry>
-        <entry key = "Volibear" value = "Volibear,Shimmerscale,Dragonmancer,Legend"></entry>
-        <entry key = "Xayah" value = "Xayah,Ragewing,Swiftshot"></entry>
-        <entry key = "Yasuo" value = "Yasuo,Mirage,Dragonmancer,Warrior"></entry>
-        <entry key = "Yone" value = "Yone,Mirage,Warrior"></entry>
-        <entry key = "Zoe" value = "Zoe,Spell-Thief,Shimmerscale,Mage"></entry>
-      </map>
-    </constructor-arg>
+      </list>
+    </property>
+    <property name="units">
+      <list>
+        <value>Aatrox</value>
+        <value>Anivia</value>
+        <value>Ao Shin</value>
+        <value>Ashe</value>
+        <value>Aurelion Sol</value>
+        <value>Bard</value>
+        <value>Braum</value>
+        <value>Corki</value>
+        <value>Daeja</value>
+        <value>Diana</value>
+        <value>Elise</value>
+        <value>Ezreal</value>
+        <value>Gnar</value>
+        <value>Hecarim</value>
+        <value>Heimerdinger</value>
+        <value>Idas</value>
+        <value>Illaoi</value>
+        <value>Jinx</value>
+        <value>Karma</value>
+        <value>Kayn</value>
+        <value>Leesin</value>
+        <value>Leona</value>
+        <value>Lillia</value>
+        <value>Lulu</value>
+        <value>Nami</value>
+        <value>Neeko</value>
+        <value>Nidalee</value>
+        <value>Nunu</value>
+        <value>Olaf</value>
+        <value>Ornn</value>
+        <value>Pyke</value>
+        <value>Qiyana</value>
+        <value>Ryze</value>
+        <value>Sejuani</value>
+        <value>Senna</value>
+        <value>Sett</value>
+        <value>Shen</value>
+        <value>Shi Oh Yu</value>
+        <value>Shyvana</value>
+        <value>Skarner</value>
+        <value>Sona</value>
+        <value>Soraka</value>
+        <value>Swain</value>
+        <value>Syfen</value>
+        <value>Sylas</value>
+        <value>Tahm Kench</value>
+        <value>Talon</value>
+        <value>Taric</value>
+        <value>Thresh</value>
+        <value>Tristana</value>
+        <value>Twitch</value>
+        <value>Varus</value>
+        <value>Vladimir</value>
+        <value>Volibear</value>
+        <value>Xayah</value>
+        <value>Yasuo</value>
+        <value>Yone</value>
+        <value>Zoe</value>
+      </list>
+    </property>
+    <property name="queries">
+      <list>
+        <value>Aatrox:Shimmerscale:Warrior</value>
+        <value>Anivia:Jade:Evoker:Legend</value>
+        <value>Ao Shin:Tempest:Dragon</value>
+        <value>Ashe:Jade:Swiftshot:Dragonmancer</value>
+        <value>Aurelion Sol:Astral:Evoker:Dragon</value>
+        <value>Bard:Guild:Mystic:Bard</value>
+        <value>Braum:Scalescorn:Guardian</value>
+        <value>Corki:Revel:Cannoneer</value>
+        <value>Daeja:Mirage:Dragon</value>
+        <value>Diana:Scalescorn:Assassin</value>
+        <value>Elise:Whispers:Shapeshifter</value>
+        <value>Ezreal:Tempest:Swiftshot</value>
+        <value>Gnar:Jade:Shapeshifter</value>
+        <value>Hecarim:Ragewing:Cavalier</value>
+        <value>Heimerdinger:Trainer:Mage</value>
+        <value>Idas:Shimmerscale:Guardian:Dragon</value>
+        <value>Illaoi:Astral:Bruiser</value>
+        <value>Jinx:Revel:Cannoneer</value>
+        <value>Karma:Jade:Dragonmancer</value>
+        <value>Kayn:Ragewing:Assassin:Shimmerscale</value>
+        <value>Leesin:Tempest:Dragonmancer</value>
+        <value>Leona:Mirage:Guardian</value>
+        <value>Lillia:Scalescorn:Cavalier:Mage</value>
+        <value>Lulu:Trainer:Mystic:Evoker</value>
+        <value>Nami:Astral:Mage:Mystic</value>
+        <value>Neeko:Jade:Shapeshifter</value>
+        <value>Nidalee:Astral:Shapeshifter</value>
+        <value>Nunu:Mirage:Cavalier</value>
+        <value>Olaf:Scalescorn:Bruiser:Warrior</value>
+        <value>Ornn:Tempest:Bruiser:Legend</value>
+        <value>Pyke:Whispers:Assassin</value>
+        <value>Qiyana:Tempest:Assassin</value>
+        <value>Ryze:Guild:Mage</value>
+        <value>Sejuani:Guild:Cavalier</value>
+        <value>Senna:Ragewing:Cannoneer</value>
+        <value>Sett:Ragewing:Dragonmancer</value>
+        <value>Shen:Ragewing:Bruiser:Warrior</value>
+        <value>Shi Oh Yu:Jade:Mystic:Dragon</value>
+        <value>Shyvana:Ragewing:Shapeshifter</value>
+        <value>Skarner:Astral:Bruiser</value>
+        <value>Sona:Revel:Evoker</value>
+        <value>Soraka:Jade:Starcaller</value>
+        <value>Swain:Ragewing:Dragonmancer:Shapeshifter</value>
+        <value>Syfen:Whispers:Bruiser:Dragon</value>
+        <value>Sylas:Whispers:Bruiser:Mage</value>
+        <value>Tahm Kench:Revel:Bruiser</value>
+        <value>Talon:Guild:Assassin</value>
+        <value>Taric:Jade:Guardian</value>
+        <value>Thresh:Whispers:Guardian</value>
+        <value>Tristana:Trainer:Cannoneer</value>
+        <value>Twitch:Guild:Swiftshot</value>
+        <value>Varus:Astral:Swiftshot</value>
+        <value>Vladimir:Astral:Mage</value>
+        <value>Volibear:Shimmerscale:Dragonmancer:Legend</value>
+        <value>Xayah:Ragewing:Swiftshot</value>
+        <value>Yasuo:Mirage:Dragonmancer:Warrior</value>
+        <value>Yone:Mirage:Warrior</value>
+        <value>Zoe:Spell-Thief:Shimmerscale:Mage</value>
+      </list>
+    </property>
+    <constructor-arg name="invalidUnit" value="N/A"/>
+    <constructor-arg name="invalidTrait" value="N/A"/>
   </bean>
 
   <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <set>
-              <bean class="com.kien.demo.dao.localdb.LocalTraitConverter"/>
-              <ref bean="unitConverter" />
-            </set>
-        </property>
-    </bean>
+    <property name="converters">
+      <set>
+        <bean class="com.kien.demo.dao.localdb.LocalTraitConverter"/>
+        <bean class="com.kien.demo.dao.localdb.LocalUnitConverter" />
+      </set>
+    </property>
+  </bean>
 
   
 

@@ -1,17 +1,12 @@
 package com.kien.demo.model;
 
-import java.util.List;
 
 public class Unit {
 
-    private final List<Trait> traits;
-
     private final String name; 
     
-    public Unit(String name, List<Trait> traits){
+    public Unit(String name){
         this.name = name;
-        this.traits = traits;
-        traits.stream().forEach(t -> t.getUnits().add(this));
     }
     
     
@@ -31,11 +26,7 @@ public class Unit {
     
     @Override
     public String toString(){
-        return name + ": " + traits.toString();
-    }
-    
-    public List<Trait> getTraits() {
-        return traits;
+        return name;
     }
     
     public String getName() {
