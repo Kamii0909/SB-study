@@ -7,8 +7,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.kien.demo.dao.localdb.TraitData;
-import com.kien.demo.dao.localdb.UnitData;
+import com.kien.demo.dao.converter.TraitData;
+import com.kien.demo.dao.converter.UnitData;
 import com.kien.demo.model.Trait;
 import com.kien.demo.model.Unit;
 
