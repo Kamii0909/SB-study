@@ -6,8 +6,12 @@
 
   <import resource="localdb/data.xml"/>
 
-  <bean id = "graph" class ="com.kien.demo.dao.TftGraph">
+  <bean id = "localDatabase" class ="com.kien.demo.dao.database.LocalDatabase">
     <constructor-arg ref="localPreload"/>
+  </bean>
+
+  <bean id = "localTftDao" class="com.kien.demo.dao.LocalTftDao">
+    <constructor-arg ref="localDatabase"/>
   </bean>
 
 </beans>
