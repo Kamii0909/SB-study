@@ -1,54 +1,41 @@
-package com.kien.demo.dao;
+package com.kien.demo.service;
 
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
 
 import com.google.common.collect.ArrayTable;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
 import com.google.common.collect.Table;
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.MutableGraph;
-import com.kien.demo.dao.preload.Preload;
+import com.kien.demo.dao.dao.TftDao;
 import com.kien.demo.model.Trait;
 import com.kien.demo.model.Unit;
 
 
 
-public class TftGraph {
+public class TftGraph implements TftService {
 
     //data representation
     //Trait m...n Unit
-    private Multimap<Trait, Unit> mapTraitToUnit;
-    private Multimap<Unit, Trait> mapUnitToTrait;
-
+    TftDao tftDao;
     private MutableGraph<Unit> unitGraph;
-
-
     private Table<Unit, Unit, Path> path;
 
-    
-    
-    TftGraph(Preload preload){
-        mapTraitToUnit = MultimapBuilder.hashKeys(28).hashSetValues(58).build();
-        mapUnitToTrait = MultimapBuilder.hashKeys(58).hashSetValues(28).build();
+   
+    TftGraph(TftDao tftDao){
+        this.tftDao = tftDao;
         unitGraph = GraphBuilder.undirected().expectedNodeCount(58).build();
 
-        List<Unit> unitsCache = preload.getUnits();
-
-        for(String query: preload.getQueries()){
-            String[] arr = query.split(":");
-            Unit unit = preload.getUnit(arr[0]);
-            Stream.of(arr).skip(1).map(name -> preload.getTrait(name)).forEach(trait -> {
-                mapTraitToUnit.get(trait).stream().forEach(unit2 -> unitGraph.putEdge(unit, unit2));
-                mapTraitToUnit.put(trait, unit);
-                mapUnitToTrait.put(unit, trait);
-            });
+        for(Unit unit: tftDao.allUnits()){
+            for(Unit adjaUnit: tftDao.adjaUnit(unit)){
+                unitGraph.putEdge(unit, adjaUnit);
+            }
         }
 
-        path = ArrayTable.create(unitsCache, unitsCache);
+
+        path = ArrayTable.create(tftDao.allUnits(), tftDao.allUnits());
         updateAllPath();
     }
 
@@ -59,7 +46,7 @@ public class TftGraph {
      * A D* implementation is pending.
 	 */
     private void updateAllPath(){
-        Set<Unit> unitsCache = mapUnitToTrait.keySet();
+        List<Unit> unitsCache = tftDao.allUnits();
         for(Unit ui: unitsCache)
             for(Unit uj: unitsCache)
                 path.put(ui, uj, new Path().setPathLength(100).setNext(null));
@@ -81,11 +68,27 @@ public class TftGraph {
     }
 
     public void removeATrait(Trait trait){
-        mapTraitToUnit.get(trait).stream().forEach(unit -> mapUnitToTrait.get(unit).remove(trait));
-        mapUnitToTrait.removeAll(trait);
+        tftDao.removeATrait(trait);
+        List<Unit> l = tftDao.unitOf(trait);
+        for(int i = 0; i < l.size(); i++)
+            for(int j = i + 1; j < l.size(); j++)
+                unitGraph.removeEdge(l.get(i), l.get(j));
+            
+        
         updateAllPath();
     }
 
+    public void removeATrait(Unit unit, Trait trait){
+        tftDao.removeATrait(unit, trait);
+    }
+
+    public void addATrait(Unit unit, Trait trait){
+        tftDao.unitOf(trait).stream().forEach(u -> unitGraph.putEdge(u, unit));
+        tftDao.getTraitToUnitMapping().put(trait, unit);
+        tftDao.getUnitToTraitMapping().put(unit, trait);
+        
+        updateAllPath();
+    }
 
     public LinkedList<Unit> getPathAsList(Unit src, Unit des){
         LinkedList<Unit> result = new LinkedList<>();
@@ -107,7 +110,7 @@ public class TftGraph {
      * @return an unmodifiable List
      */
     public List<Trait> traitOf(Unit unit){
-        return mapUnitToTrait.get(unit).stream().toList();
+        return tftDao.traitOf(unit);
     }
 
     /**
@@ -116,6 +119,34 @@ public class TftGraph {
      * @return an unmodifiable List
      */
     public List<Unit> unitOf(Trait trait){
-        return mapTraitToUnit.get(trait).stream().toList();
+        return tftDao.unitOf(trait);
     }
+
+    @Override
+    public List<Trait> allTraits() {
+        return tftDao.allTraits();
+    }
+
+    @Override
+    public List<Unit> allUnits() {
+        return tftDao.allUnits();
+    }
+
+    @Override
+    public List<Unit> adjaUnit(Unit unit) {
+        return tftDao.adjaUnit(unit);
+    }
+
+    @Override
+    public LinkedHashMap<String, Double> avgPathLength(Collection<Unit> comp) {
+        LinkedHashMap<String, Double> result = new LinkedHashMap<>();
+        for(Unit unit: comp){
+            result.put(unit.getName(), unitGraph.adjacentNodes(unit).stream().mapToInt(unit2 -> getPathLength(unit, unit2)).average().orElse(-1));
+        }
+        Double average = result.values().stream().mapToDouble(value -> value).average().orElse(-1);
+        result.put("Average", average);
+        return result;
+    }
+
+    
 }

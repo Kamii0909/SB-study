@@ -1,4 +1,4 @@
-package com.kien.demo.dao;
+package com.kien.demo.service;
 
 import com.kien.demo.model.Unit;
 
@@ -6,12 +6,12 @@ public class Path {
     private int pathLength;
     private Unit next;
 
-    Path setNext(Unit next){
+    public Path setNext(Unit next){
         this.next = next;
         return this;
     }
 
-    Path setPathLength(int pathLength){
+    public Path setPathLength(int pathLength){
         this.pathLength = pathLength;
         return this;
     }

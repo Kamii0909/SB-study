@@ -5,8 +5,6 @@ import java.util.List;
 import com.kien.demo.model.*;
 
 public abstract class AbstractPreload implements Preload {
-    protected final Unit INVALID_UNIT = new Unit("N/A");
-    protected final Trait INVALID_TRAIT = new Trait("N/A");
     
     protected List<Unit> units;
     protected List<Trait> traits;
@@ -32,21 +30,12 @@ public abstract class AbstractPreload implements Preload {
 
     @Override
     public Unit getUnit(String name) {
-        return units.stream().filter(u -> u.getName().equals(name)).findFirst().orElse(INVALID_UNIT);
+        return units.stream().filter(u -> u.getName().equals(name)).findFirst().orElse(null);
     }
     
     @Override
     public Trait getTrait(String name) {
-        return traits.stream().filter(t -> t.getName().equals(name)).findFirst().orElse(INVALID_TRAIT);
-    }
-    
-    @Override
-    public Trait getInvalidTrait() {
-        return INVALID_TRAIT;
+        return traits.stream().filter(t -> t.getName().equals(name)).findFirst().orElse(null);
     }
 
-    @Override
-    public Unit getInvalidUnit() {
-        return INVALID_UNIT;
-    }
 }

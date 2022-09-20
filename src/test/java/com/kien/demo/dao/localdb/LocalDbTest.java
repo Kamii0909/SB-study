@@ -4,9 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.kien.demo.dao.TftGraph;
 import com.kien.demo.dao.preload.Preload;
-import com.kien.demo.model.Unit;
+import com.kien.demo.service.TftGraph;
 
 public class LocalDbTest {
 

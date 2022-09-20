@@ -1,14 +1,20 @@
-package com.kien.demo.dao.database;
+package com.kien.demo.dao.dao;
 
-import java.util.*;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 import com.google.common.collect.Multimap;
 import com.kien.demo.model.Trait;
 import com.kien.demo.model.Unit;
 
-public interface Database {
+public interface TftDao {
 
     //Accessor methods
+    public Unit getUnit(String name);
+    public List<Unit> getUnitWith(Predicate<Unit> pred);
+    public Trait getTrait(String name);
+    public List<Trait> getTraitWith(Predicate<Trait> pred);
     public List<Unit> allUnits();
     public List<Trait> allTraits();
     public List<Trait> traitOf(Unit unit);

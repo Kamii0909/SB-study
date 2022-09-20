@@ -14,6 +14,4 @@ public interface Preload {
     public List<Trait> getTraits();
     public Unit getUnit(String name);
     public Trait getTrait(String name);
-    public Unit getInvalidUnit();
-    public Trait getInvalidTrait();
 }
