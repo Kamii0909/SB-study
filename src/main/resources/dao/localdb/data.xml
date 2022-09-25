@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
   https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="localPreload" class = "com.kien.demo.dao.preload.LocalPreload">
+  <bean id="localPreload" class = "com.kien.tft.dao.preload.LocalPreload">
     <property name="traits">
       <list>
         <value>Astral</value>
@@ -167,8 +167,8 @@
   <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
     <property name="converters">
       <set>
-        <bean class="com.kien.demo.dao.converter.LocalTraitConverter"/>
-        <bean class="com.kien.demo.dao.converter.LocalUnitConverter" />
+        <bean class="com.kien.tft.dao.converter.LocalTraitConverter"/>
+        <bean class="com.kien.tft.dao.converter.LocalUnitConverter" />
       </set>
     </property>
   </bean>

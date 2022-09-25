@@ -1,6 +1,6 @@
-package com.kien.demo.dao.dao;
+package com.kien.tft.dao.dao;
 
-import com.kien.demo.dao.database.Database;
+import com.kien.tft.dao.database.Database;
 
 public class LocalTftDao extends AbstractTftDao {
 

@@ -1,8 +1,8 @@
-package com.kien.demo.dao.converter;
+package com.kien.tft.dao.converter;
 
 import org.springframework.core.convert.converter.Converter;
 
-import com.kien.demo.model.Unit;
+import com.kien.tft.model.Unit;
 
 public class LocalUnitConverter implements Converter<String, Unit> {
     @Override

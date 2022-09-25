@@ -1,6 +1,6 @@
-package com.kien.demo.service;
+package com.kien.tft.service;
 
-import com.kien.demo.model.Unit;
+import com.kien.tft.model.Unit;
 
 public class Path {
     private int pathLength;

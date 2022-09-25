@@ -1,8 +1,8 @@
-package com.kien.demo.dao.preload;
+package com.kien.tft.dao.preload;
 
 import java.util.List;
 
-import com.kien.demo.model.*;
+import com.kien.tft.model.*;
 
 public abstract class AbstractPreload implements Preload {
     

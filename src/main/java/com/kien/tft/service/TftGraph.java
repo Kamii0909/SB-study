@@ -1,4 +1,4 @@
-package com.kien.demo.service;
+package com.kien.tft.service;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -9,9 +9,9 @@ import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.MutableGraph;
-import com.kien.demo.dao.dao.TftDao;
-import com.kien.demo.model.Trait;
-import com.kien.demo.model.Unit;
+import com.kien.tft.dao.dao.TftDao;
+import com.kien.tft.model.Trait;
+import com.kien.tft.model.Unit;
 
 
 
@@ -30,6 +30,7 @@ public class TftGraph implements TftService {
 
         for(Unit unit: tftDao.allUnits()){
             for(Unit adjaUnit: tftDao.adjaUnit(unit)){
+                if(adjaUnit.equals(unit)) continue;
                 unitGraph.putEdge(unit, adjaUnit);
             }
         }
@@ -141,7 +142,7 @@ public class TftGraph implements TftService {
     public LinkedHashMap<String, Double> avgPathLength(Collection<Unit> comp) {
         LinkedHashMap<String, Double> result = new LinkedHashMap<>();
         for(Unit unit: comp){
-            result.put(unit.getName(), unitGraph.adjacentNodes(unit).stream().mapToInt(unit2 -> getPathLength(unit, unit2)).average().orElse(-1));
+            result.put(unit.getName(), comp.stream().mapToDouble(unit2 -> Double.valueOf(getPathLength(unit, unit2))).average().orElse(-1));
         }
         Double average = result.values().stream().mapToDouble(value -> value).average().orElse(-1);
         result.put("Average", average);

@@ -1,12 +1,12 @@
-package com.kien.demo.dao.dao;
+package com.kien.tft.dao.dao;
 
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import com.google.common.collect.Multimap;
-import com.kien.demo.model.Trait;
-import com.kien.demo.model.Unit;
+import com.kien.tft.model.Trait;
+import com.kien.tft.model.Unit;
 
 public interface TftDao {
 

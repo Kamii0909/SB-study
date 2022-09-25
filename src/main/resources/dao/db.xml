@@ -6,11 +6,11 @@
 
   <import resource="localdb/data.xml"/>
 
-  <bean id = "localDatabase" class ="com.kien.demo.dao.database.LocalDatabase">
+  <bean id = "localDatabase" class ="com.kien.tft.dao.database.LocalDatabase">
     <constructor-arg ref="localPreload"/>
   </bean>
 
-  <bean id = "localTftDao" class="com.kien.demo.dao.LocalTftDao">
+  <bean id = "localTftDao" class="com.kien.tft.dao.dao.LocalTftDao">
     <constructor-arg ref="localDatabase"/>
   </bean>
 

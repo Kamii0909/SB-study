@@ -1,4 +1,4 @@
-package com.kien.demo;
+package com.kien.tft;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

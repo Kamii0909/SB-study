@@ -1,10 +1,10 @@
-package com.kien.demo.dao.database;
+package com.kien.tft.dao.database;
 
 import java.util.*;
 
 import com.google.common.collect.Multimap;
-import com.kien.demo.model.Trait;
-import com.kien.demo.model.Unit;
+import com.kien.tft.model.Trait;
+import com.kien.tft.model.Unit;
 
 public interface Database {
 

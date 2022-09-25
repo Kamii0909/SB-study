@@ -6,7 +6,7 @@
 
   <import resource="../dao/db.xml" />
 
-  <bean id = "tftGraph" class="com.kien.demo.service.TftGraph">
+  <bean id = "tftGraph" class="com.kien.tft.service.TftGraph">
     <constructor-arg ref="localTftDao"/>
   </bean>
 

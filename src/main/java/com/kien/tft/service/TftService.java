@@ -1,11 +1,11 @@
-package com.kien.demo.service;
+package com.kien.tft.service;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.kien.demo.model.*;
+import com.kien.tft.model.*;
 
 public interface TftService {
 

@@ -1,13 +1,13 @@
-package com.kien.demo.dao.database;
+package com.kien.tft.dao.database;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
-import com.kien.demo.dao.preload.Preload;
-import com.kien.demo.model.Trait;
-import com.kien.demo.model.Unit;
+import com.kien.tft.dao.preload.Preload;
+import com.kien.tft.model.Trait;
+import com.kien.tft.model.Unit;
 
 public class LocalDatabase implements Database {
 
