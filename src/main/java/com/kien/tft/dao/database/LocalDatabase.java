@@ -1,11 +1,10 @@
 package com.kien.tft.dao.database;
 
 import java.util.List;
-import java.util.stream.Stream;
-
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import com.kien.tft.dao.preload.Preload;
+import com.kien.tft.dao.preload.Query;
 import com.kien.tft.model.Trait;
 import com.kien.tft.model.Unit;
 
@@ -37,13 +36,11 @@ public class LocalDatabase implements Database {
         allTraits = preload.getTraits();
 
 
-        for(String query: preload.getQueries()){
-            String[] arr = query.split(":");
-            Unit unit = preload.getUnit(arr[0]);
-            Stream.of(arr).skip(1).map(name -> preload.getTrait(name)).forEach(trait -> {
-                mapUnitToAdja.putAll(unit, mapTraitToUnit.get(trait));
-                mapTraitToUnit.put(trait, unit);
-                mapUnitToTrait.put(unit, trait);
+        for(Query query: preload.getQueries()){
+            query.getTraits().stream().forEach(trait -> {
+                mapUnitToAdja.putAll(query.getUnit(), mapTraitToUnit.get(trait));
+                mapTraitToUnit.put(trait, query.getUnit());
+                mapUnitToTrait.put(query.getUnit(), trait);
             });
         }
     }
