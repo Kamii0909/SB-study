@@ -87,4 +87,16 @@ public abstract class AbstractTftDao implements TftDao {
     public Unit getUnit(String name) {
         return database.allUnits().stream().filter(unit -> unit.getName().equals(name)).findFirst().orElse(INVALID_UNIT);
     }
+
+    @Override
+    public Trait invalidTrait() {
+        return INVALID_TRAIT;
+    }
+
+    @Override
+    public Unit invalidUnit() {
+        return INVALID_UNIT;
+    }
+
+    
 }

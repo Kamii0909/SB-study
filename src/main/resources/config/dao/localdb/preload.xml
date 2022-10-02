@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="localPreload" class = "com.kien.tft.dao.preload.LocalPreload" init-method="init">
+    <constructor-arg index="0" value="static/trait.json"/>
+    <constructor-arg index="1" value="static/unit.json"/>
+  </bean>
+
+  <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <property name="converters">
+      <set>
+        <bean class="com.kien.tft.dao.converter.LocalTraitConverter"/>
+        <bean class="com.kien.tft.dao.converter.LocalUnitConverter" />
+      </set>
+    </property>
+  </bean>
+
+  
+
+</beans>

@@ -4,10 +4,14 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
   https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <import resource="../dao/db.xml" />
+  <import resource="localdb/preload.xml"/>
 
-  <bean id = "tftGraph" class="com.kien.tft.service.TftGraph">
-    <constructor-arg ref="localTftDao"/>
+  <bean id = "localDatabase" class ="com.kien.tft.dao.database.LocalDatabase">
+    <constructor-arg ref="localPreload"/>
+  </bean>
+
+  <bean id = "localTftDao" class="com.kien.tft.dao.dao.LocalTftDao">
+    <constructor-arg ref="localDatabase"/>
   </bean>
 
 </beans>

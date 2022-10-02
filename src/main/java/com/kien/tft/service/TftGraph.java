@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
@@ -19,7 +20,7 @@ public class TftGraph implements TftService {
 
     //data representation
     //Trait m...n Unit
-    TftDao tftDao;
+    private TftDao tftDao;
     private MutableGraph<Unit> unitGraph;
     private Table<Unit, Unit, Path> path;
 
@@ -135,7 +136,7 @@ public class TftGraph implements TftService {
 
     @Override
     public List<Unit> adjaUnit(Unit unit) {
-        return tftDao.adjaUnit(unit);
+        return unitGraph.adjacentNodes(unit).stream().toList();
     }
 
     @Override
@@ -147,6 +148,37 @@ public class TftGraph implements TftService {
         Double average = result.values().stream().mapToDouble(value -> value).average().orElse(-1);
         result.put("Average", average);
         return result;
+    }
+
+
+    @Override
+    public Unit getUnitFromName(String name){
+        return tftDao.getUnit(name);
+    }
+
+    @Override
+    public Trait getTraitFromName(String name){
+        return tftDao.getTrait(name);
+    }
+
+    @Override
+    public Collection<Unit> getUnitWith(Predicate<Unit> predicate){
+        return tftDao.getUnitWith(predicate);
+    }
+
+    @Override
+    public Collection<Trait> getTraitWith(Predicate<Trait> predicate){
+        return tftDao.getTraitWith(predicate);
+    }
+
+    @Override
+    public Trait invalidTrait() {
+        return tftDao.invalidTrait();
+    }
+
+    @Override
+    public Unit invalidUnit() {
+        return tftDao.invalidUnit();
     }
 
     
