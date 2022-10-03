@@ -1,6 +1,8 @@
 package com.kien.tft.model;
 
 public class Trait {
+    public static final Trait INVALID = new Trait("N/A");
+
     private final String name;
 
     public Trait(String name) {

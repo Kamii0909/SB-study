@@ -22,9 +22,7 @@ public interface TftDao {
     public List<Unit> adjaUnit(Unit unit);
     public Multimap<Trait, Unit> getTraitToUnitMapping();
     public Multimap<Unit, Trait> getUnitToTraitMapping();
-    public Unit invalidUnit();
-    public Trait invalidTrait();
-
+    
     //Mutator method
     public void removeATrait(Unit unit, Trait trait);
     public void removeATrait(Trait trait);

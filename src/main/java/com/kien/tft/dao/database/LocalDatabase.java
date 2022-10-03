@@ -98,8 +98,5 @@ public class LocalDatabase implements Database {
     @Override
     public List<Unit> adjaUnit(Unit unit){
         return mapUnitToTrait.get(unit).stream().<Unit> flatMap(trait -> mapTraitToUnit.get(trait).stream()).toList();
-    }
-
-    
-    
+    }  
 }

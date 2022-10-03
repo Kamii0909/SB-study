@@ -170,16 +170,5 @@ public class TftGraph implements TftService {
     public Collection<Trait> getTraitWith(Predicate<Trait> predicate){
         return tftDao.getTraitWith(predicate);
     }
-
-    @Override
-    public Trait invalidTrait() {
-        return tftDao.invalidTrait();
-    }
-
-    @Override
-    public Unit invalidUnit() {
-        return tftDao.invalidUnit();
-    }
-
     
 }

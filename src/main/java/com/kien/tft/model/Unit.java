@@ -3,6 +3,8 @@ package com.kien.tft.model;
 
 public class Unit {
 
+    public static final Unit INVALID = new Unit("N/A");
+
     private final String name; 
     
     public Unit(String name){

@@ -16,9 +16,6 @@ public interface TftService {
     public Unit getUnitFromName(String name);
     public Trait getTraitFromName(String name);
 
-    public Unit invalidUnit();
-    public Trait invalidTrait();
-
     public Collection<Unit> getUnitWith(Predicate<Unit> predicate);
     public Collection<Trait> getTraitWith(Predicate<Trait> predicate);
 
