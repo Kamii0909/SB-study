@@ -13,7 +13,4 @@
     <property name="tftService" ref="tftGraph" />
   </bean>
 
-  <bean id="unitDeserializer" class="com.kien.tft.service.unitDeserializer">
-    <property name="tftService" ref="tftGraph" />
-  </bean>
 </beans>

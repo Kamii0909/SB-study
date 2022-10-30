@@ -10,4 +10,21 @@
     <constructor-arg ref="localTftDao"/>
   </bean>
 
+  <bean id="localUnitConverter" class="com.kien.tft.dao.converter.LocalUnitConverter">
+    <constructor-arg ref="localTftDao"/>
+  </bean>
+
+  <bean id="localTraitConverter" class="com.kien.tft.dao.converter.LocalTraitConverter">
+    <constructor-arg ref="localTftDao"/>
+  </bean>
+
+  <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <property name="converters">
+      <set>
+        <ref bean="localUnitConverter"/>
+        <ref bean="localTraitConverter"/>
+      </set>
+    </property>
+  </bean>
+
 </beans>

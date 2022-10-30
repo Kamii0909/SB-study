@@ -2,21 +2,18 @@ package com.kien.tft.api;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kien.tft.model.Trait;
 import com.kien.tft.model.Unit;
 import com.kien.tft.service.TftService;
@@ -28,7 +25,6 @@ import com.kien.tft.service.TftService;
 public class TftRestController {
 
     private TftService tftService;
-    private ObjectMapper objectMapper;
 
     @GetMapping(
         value = "/unit/all"
@@ -49,48 +45,47 @@ public class TftRestController {
         value = "/unit/adja",
         params = "name"
     )
-    public Map<Unit, Collection<Unit>> adjaUnits(Collection<Unit> units){
+    public Map<Unit, Collection<Unit>> adjaUnits(@RequestParam("name") Unit... units){
+        Collection<Unit> unitList = Arrays.asList(units);
         return tftService
                         .allUnits().stream()
-                        .filter(u -> units.contains(u))
+                        .filter(u -> unitList.contains(u))
                         .collect(Collectors.toMap(Function.identity(), u -> tftService.adjaUnit(u)));
     }
 
     @GetMapping(
-        value = "/unit"
+        value = "/unit",
+        params = "name"
     )
-    public Collection<Trait> traitOf(@RequestBody Unit unit){
+    public Collection<Trait> traitOf(@RequestParam("name") Unit unit){
         return tftService.traitOf(unit);
     }
 
     @GetMapping(
-        value = "/trait"
+        value = "/trait",
+        params = "name"
     )
-    public Collection<Unit> unitOf(@RequestBody Trait trait){
+    public Collection<Unit> unitOf(@RequestParam("name") Trait trait){
         return tftService.unitOf(trait);
     }
 
     @GetMapping(
         value = "/path/list",
-        consumes = APPLICATION_JSON_VALUE
+        params = {"src", "des"}
     )
-    public LinkedList<Unit> getPathAsList(@RequestBody String jsonAsString){
-        Map<String, Unit> unitMap = parseUnitJson(jsonAsString);
-        return unitMap == null ? 
-            new LinkedList<>() : tftService.getPathAsList(unitMap.get("src"), unitMap.get("des"));
+    public LinkedList<Unit> getPathAsList(@RequestParam("src") Unit src, @RequestParam("des") Unit des){
+        return tftService.getPathAsList(src, des);
     }
 
     @GetMapping(
-        value = "/path"
+        value = "/path/length",
+        params = {"src", "des"}
     )
-    public int getPathLength(@RequestBody String jsonAsString){
-        
-        Map<String, Unit> unitMap = parseUnitJson(jsonAsString);
-
-        return unitMap == null ? 
-            -1 : tftService.getPathLength(unitMap.get("src"), unitMap.get("des"));
+    public int getPathLength(@RequestParam("src") Unit src, @RequestParam("des") Unit des){
+        return tftService.getPathLength(src, des);
     }
 
+    /*
     private Map<String, Unit> parseUnitJson(String jsonAsString){
         try {
             Map<String, Unit> result = new HashMap<>();
@@ -104,25 +99,10 @@ public class TftRestController {
         }
         return null;
     }
-
-
-
-    public TftService getTftService() {
-        return tftService;
-    }
+    */
 
     public void setTftService(TftService tftService) {
         this.tftService = tftService;
-    }
-
-
-    public ObjectMapper getObjectMapper() {
-        return objectMapper;
-    }
-
-
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
     }
     
 }
